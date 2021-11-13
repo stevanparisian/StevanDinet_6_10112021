@@ -17,7 +17,8 @@
     "express": "^4.17.1",
     "http-server": "^14.0.0",
     "live-server": "^1.1.0",
-    "mongoose": "^6.0.12"
+    "mongoose": "^6.0.12",
+    "mongoose-unique-validator": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",
