@@ -1,10 +1,9 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
+const sauceRoutes = require('./routes/sauce');
 
 mongoose.connect('mongodb+srv://stevanparisian:Nick-cave-1982!@cluster0.ruejc.mongodb.net/test?retryWrites=true&w=majority',
   { useNewUrlParser: true,
@@ -23,11 +22,11 @@ app.use((req, res, next) => {
 });
 
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-app.use('/api/stuff', stuffRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/api/sauces', sauceRoutes)
 
 module.exports = app;
