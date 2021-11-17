@@ -10,7 +10,8 @@ const sauceRoutes = require('./routes/sauce');
 
 
 
-mongoose.connect('mongodb+srv://stevanparisian:Nick-cave-1982!@cluster0.ruejc.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect(
+  process.env.SECRET_DB,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
