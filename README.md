@@ -1,26 +1,39 @@
-# HOT TAKES #
+Construisez une API sécurisée pour une application d'avis gastronomiques
+6ème projet de la formation de développeur web de OpenClassrooms
 
-## Installation ##
+Scénario
+Développement d'une application web nommée "Piiquante" dans laquelle les utilisateurs pourront ajouter leurs sauces préférées et liker ou disliker les sauces proposées par les autres utilisateurs.
+Le but est de créer le backend de l'application, le frontend étant déjà codé et fourni.
 
-Here are the dependancies you need to install:
-- NodeJS 12.14 or 14.0.
-- Angular CLI 7.0.2.
-- node-sass : make sure to use the corresponding version to NodeJS. For Noe 14.0 for instance, you need node-sass in version 4.14+.
+Objectifs du projet et compétences évaluées
+Développement Backend en Javascript
 
-On Windows, these installations require to use PowerShell in administrator mode.
+Serveur Node.js
+Framework Express
+Base de données MongoDB
+Hébergement sur MongoDB Atlas
+Opérations relatives à la BDD réalisées avec mongoose
+API REST
+Sécurité OWASP et RGPD
+Mesures de sécurité mises en place
+Hashage du mot de passe utilisateur avec bcrypt
+Cryptage des emails utilisateurs dans la base de données avec crypto-js
+Manupulation sécurisée de la base de donnée avec mongoose
+Vérification que l'email utilisateur soit unique dans la base de données avec mongoose-unique-validator
+Utilisation de variables d'environnement pour les données sensibles avec dotenv
+Authentification de l'utilisateur par token avec jsonwebtoken
+Protection des headers avec helmet
 
-Then, clone this repo, `run npm install`, and `run npm install --save-dev run-script-os`.
 
+Cloner ce repository actuel
+Ajouter un fichier de configuration nommé ".env" à la racine du backend. A l'intérieur, 3 variables d'environnement "secrètes" seront définies:
+SECRET_TOKEN="token: jwt.sign('RANDOM_TOKEN_SECRET')"
+SECRET_CRYPTOJS_TOKEN="req.body.email"
+SECRET_DB="mongodb+srv://stevanparisian:Nick-cave-1982!@cluster0.ruejc.mongodb.net/test?retryWrites=true&w=majority"
 
-## Usage ##
+Lancer le backend et frontend:
 
-Run `npm start`. This should both run the local server and launch your browser.
-
-If your browser fails to launch, or shows a 404 error, navigate your browser to http://localhost:8080.
-
-The app should reload automatically when you make a change to a file.
-
-Use `Ctrl+C` in the terminal to stop the local server.
-
-
-npm run serve : pour lancer nodemon
+Dans le terminal,
+Installer les dépendances: npm install
+Lancer node server ou npm run serve
+Pour des tests spécifiques (avec postman par exemple), le backend répond à l'adresse: http://localhost:3000 (attention: authentification requise pour toutes les routes /api/sauces/)
