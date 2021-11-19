@@ -1,8 +1,12 @@
 module.exports = (req, res, next) => {
-    const validEmail = (email) => {
-        let emailRegexp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
-        let isRegexTrue = emailRegexp.test(email)
-        isRegexTrue ? next() : res.status(400).json({ message: 'mail non valide' });
+    const emailValid = (email) => {
+        let emailRegex = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/;
+        let emeilItsOk = emailRegex.test(email);
+        if(!emeilItsOk) {
+            res.status(400).json({ message: "Email non valide"})
+        } else {
+            next()
+        }
     }
-    validEmail(req.body.email)
-  };
+    emailValid(req.body.email)
+};

@@ -1,26 +1,13 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const morgan = require('morgan');
+require('./database/dbConfig');
 const path = require('path');
-const helmet = require("helmet");
+const usersRoutes = require('./routes/user')
+const saucesRoutes = require('./routes/sauce')
 
-require('dotenv').config();
-
-const userRoutes = require('./routes/user');
-const sauceRoutes = require('./routes/sauce');
-
-
-
-mongoose.connect(
-  process.env.SECRET_DB,
-  { useNewUrlParser: true,
-    useUnifiedTopology: true })
-  .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
-  
 const app = express();
 
-app.use(helmet());
-
+app.use(morgan('dev'));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,12 +16,11 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/api/auth", usersRoutes)
+app.use("/api/sauces", saucesRoutes)
 
-app.use('/images', express.static(path.join(__dirname, 'images')));
 
-app.use('/api/auth', userRoutes);
-app.use('/api/sauces', sauceRoutes)
 
 module.exports = app;
