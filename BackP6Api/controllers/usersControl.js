@@ -1,4 +1,4 @@
-const usersModel = require('../models/User');
+const usersModel = require('../models/usersModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cryptojs = require('crypto-js');
@@ -7,7 +7,7 @@ const result = dotenv.config();
 
 
 exports.signup = (req, res, next) => {
-    const emailCrypt = cryptojs.HmacSHA256(req.body.email, `${process.env.SECRET_CRYPTOJS_TOKEN}`).toString(cryptojs.enc.Base64);
+    const emailCrypt = cryptojs.HmacSHA256(req.body.email, `${process.env.CLE_CRYPTO}`).toString(cryptojs.enc.Base64);
 
     bcrypt.hash(req.body.password, 10)
     .then((hashedPassword)=> {
@@ -26,7 +26,7 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    const emailCrypt = cryptojs.HmacSHA256(req.body.email, `${process.env.SECRET_CRYPTOJS_TOKEN}`).toString(cryptojs.enc.Base64);
+    const emailCrypt = cryptojs.HmacSHA256(req.body.email, `${process.env.CLE_CRYPTO}`).toString(cryptojs.enc.Base64);
 
     usersModel.findOne({ email: emailCrypt})
     .then((user) => {
@@ -44,7 +44,7 @@ exports.login = (req, res, next) => {
                     userId: user._id,
                     token: jwt.sign(
                         { userId: user._id },
-                        process.env.SECRET_TOKEN,
+                        process.env.CLE_CRYPTO,
                         { expiresIn: '12h'}
                     )
                 })

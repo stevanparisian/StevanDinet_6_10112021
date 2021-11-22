@@ -2,8 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 require('./database/dbConfig');
 const path = require('path');
-const usersRoutes = require('./routes/user')
-const saucesRoutes = require('./routes/sauce')
+const usersRoutes = require('./routes/usersRoutes')
+const saucesRoutes = require('./routes/saucesRoutes')
 
 const app = express();
 
