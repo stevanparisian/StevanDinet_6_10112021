@@ -8,5 +8,5 @@ mongoose.connect(
     process.env.SECRET_DB,
     { useNewUrlParser: true, useUnifiedTopology: true },    
 )
-.then(() => console.log("Connxion à MongoDB Réussie"))
+.then(() => console.log("Connexion à MongoDB Réussie"))
 .catch(() => console.log("Échec de connexion à MongoDB"));
